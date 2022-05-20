@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { relative } from "path";
 import { ReactElement, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
@@ -44,12 +45,16 @@ const Home: NextPage = () => {
       {movies?.map((movie) => (
         <div key={movie.id}>
           <h5>{movie.original_title}</h5>
-          <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-            alt={movie.original_title}
-            width={200}
-            height={200}
-          />
+          <Link href={`/movies/${movie.id}`}>
+            <a>
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                alt={movie.original_title}
+                width={200}
+                height={200}
+              />
+            </a>
+          </Link>
         </div>
       ))}
       <Seo title="home" />
