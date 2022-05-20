@@ -32,8 +32,17 @@ interface IMovie {
 const Home: NextPage = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const router = useRouter();
-  const onClick = (id: number) => {
-    router.push(`movies/${id}`);
+  console.log("router", router);
+  const onClick = (id: number, title: string) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
   };
 
   useEffect(() => {
@@ -52,7 +61,7 @@ const Home: NextPage = () => {
           <h5>{movie.original_title}</h5>
           {/* <Link href={`/movies/${movie.id}`}>
             <a> */}
-          <div onClick={() => onClick(movie.id)}>
+          <div onClick={() => onClick(movie.id, movie.original_title)}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.original_title}
