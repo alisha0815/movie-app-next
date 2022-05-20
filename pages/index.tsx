@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { relative } from "path";
 import { ReactElement, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
@@ -30,6 +31,10 @@ interface IMovie {
 
 const Home: NextPage = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
+  const router = useRouter();
+  const onClick = (id: number) => {
+    router.push(`movies/${id}`);
+  };
 
   useEffect(() => {
     (async () => {
@@ -39,26 +44,28 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <h3>Home</h3>
       {!movies && <h3>Loading...</h3>}
       {movies?.map((movie) => (
         <div key={movie.id}>
           <h5>{movie.original_title}</h5>
-          <Link href={`/movies/${movie.id}`}>
-            <a>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                alt={movie.original_title}
-                width={200}
-                height={200}
-              />
-            </a>
-          </Link>
+          {/* <Link href={`/movies/${movie.id}`}>
+            <a> */}
+          <div onClick={() => onClick(movie.id)}>
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.original_title}
+              width={200}
+              height={200}
+            />
+          </div>
+          {/* </a>
+          </Link> */}
         </div>
       ))}
       <Seo title="home" />
-    </>
+    </div>
   );
 };
 
