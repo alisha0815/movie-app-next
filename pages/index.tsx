@@ -35,13 +35,14 @@ const Home: NextPage = () => {
   console.log("router", router);
   const onClick = (id: number, title: string) => {
     router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
+      `/movies/${title}/${id}`
+      // {
+      //   pathname: `/movies/${id}`,
+      //   query: {
+      //     title,
+      //   },
+      // },
+      // `/movies/${id}`
     );
   };
 

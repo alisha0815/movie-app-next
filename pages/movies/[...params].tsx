@@ -4,7 +4,9 @@ import React from "react";
 
 const Detail = () => {
   const router = useRouter();
-  const { id, title } = router.query;
+  console.log(router.query.params);
+  const [title, id] = router.query.params || [];
+  console.log({ title, id });
   return (
     <div>
       <h3>movie details: {id}</h3>
