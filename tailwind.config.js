@@ -1,7 +1,14 @@
 module.exports = {
   content: ["./pages/**/*.tsx", "./components/**/*.tsx"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        blue: "#2596BE",
+      },
+      fontFamily: {
+        Lato: ["Lato", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

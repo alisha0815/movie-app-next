@@ -59,7 +59,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="bg-indigo-500">
+    <div className="bg-indigo-500 font-Lato">
       <h3 className="text-rose-600 bg-orange-500 mt-30">Home</h3>
       {!movies && <h3>Loading...</h3>}
       {movies?.map((movie) => (

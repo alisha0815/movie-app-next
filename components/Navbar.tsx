@@ -6,12 +6,28 @@ const Navbar = () => {
   console.log("router", router);
   return (
     <>
-      <nav>
+      <nav className="flex space-x-9 p-8 text-lg place-content-end">
         <Link href={"/"}>
-          <a className={router.pathname === "/" ? "active" : ""}>Home</a>
+          <a
+            className={
+              router.pathname === "/"
+                ? "active hover:scale-125"
+                : "hover:scale-125"
+            }
+          >
+            Home
+          </a>
         </Link>
         <Link href={"/about"}>
-          <a className={router.pathname === "/about" ? "active" : ""}>About</a>
+          <a
+            className={
+              router.pathname === "/about"
+                ? "active hover:scale-125"
+                : "hover:scale-125"
+            }
+          >
+            About
+          </a>
         </Link>
       </nav>
       <style jsx>{`
