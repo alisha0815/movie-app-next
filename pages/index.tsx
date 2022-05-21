@@ -7,10 +7,10 @@ import { relative } from "path";
 import { ReactElement, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Seo from "../components/Seo";
-import styles from "../styles/Home.module.css";
 
-const URL = `/api/movies`;
+const URL = "api/movies";
 const imgURL = `https://image.tmdb.org/t/p/w500`;
+const API_KEYS = process.env.NEXT_PUBLIC_API_KEY;
 
 interface IMovie {
   adult: boolean;
@@ -48,26 +48,35 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     (async () => {
-      const { results } = await (await fetch(URL)).json();
+      const { results } = await (
+        await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEYS}&language=en-US&page=1`
+        )
+      ).json();
       setMovies(results);
+      console.log("results", results);
     })();
   }, []);
 
   return (
-    <div>
-      <h3>Home</h3>
+    <div className="bg-indigo-500">
+      <h3 className="text-rose-600 bg-orange-500 mt-30">Home</h3>
       {!movies && <h3>Loading...</h3>}
       {movies?.map((movie) => (
         <div key={movie.id}>
           <h5>{movie.original_title}</h5>
           {/* <Link href={`/movies/${movie.id}`}>
             <a> */}
-          <div onClick={() => onClick(movie.id, movie.original_title)}>
+          <div
+            onClick={() => onClick(movie.id, movie.original_title)}
+            className="grid-cols-2"
+          >
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.original_title}
               width={200}
               height={200}
+              className="shadow-sm"
             />
           </div>
           {/* </a>
