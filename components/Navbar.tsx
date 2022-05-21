@@ -6,7 +6,7 @@ const Navbar = () => {
   console.log("router", router);
   return (
     <>
-      <nav className="flex space-x-9 p-8 text-lg place-content-end">
+      <nav className="flex space-x-9 p-8 text-lg place-content-end font-semibold">
         <Link href={"/"}>
           <a
             className={

@@ -59,31 +59,34 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="bg-indigo-500 font-Lato">
-      <h3 className="text-rose-600 bg-orange-500 mt-30">Home</h3>
-      {!movies && <h3>Loading...</h3>}
-      {movies?.map((movie) => (
-        <div key={movie.id}>
-          <h5>{movie.original_title}</h5>
-          {/* <Link href={`/movies/${movie.id}`}>
+    <div>
+      <div className="grid grid-cols-3 gap-2 container mx-auto text-center">
+        {!movies && <h3>Loading...</h3>}
+        {movies?.map((movie) => (
+          <div key={movie.id} className="">
+            <h5 className="text-lg pb-3 italic text-lime-900 ">
+              {movie.original_title}
+            </h5>
+            {/* <Link href={`/movies/${movie.id}`}>
             <a> */}
-          <div
-            onClick={() => onClick(movie.id, movie.original_title)}
-            className="grid-cols-2"
-          >
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-              alt={movie.original_title}
-              width={200}
-              height={200}
-              className="shadow-sm"
-            />
-          </div>
-          {/* </a>
+            <div
+              onClick={() => onClick(movie.id, movie.original_title)}
+              className="pb-5 hover:transition-all hover:scale-105 "
+            >
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                alt={movie.original_title}
+                width={300}
+                height={300}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+            {/* </a>
           </Link> */}
-        </div>
-      ))}
-      <Seo title="home" />
+          </div>
+        ))}
+        <Seo title="home" />
+      </div>
     </div>
   );
 };
